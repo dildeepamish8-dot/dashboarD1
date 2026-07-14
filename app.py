@@ -1,7 +1,4 @@
-# app.py — Olist Fulfilment & Revenue Dashboard (Streamlit)
-# Run locally:  pip install streamlit plotly pandas
-#               streamlit run app.py
-# Needs: master.csv in the same folder (export from your notebook — see note at bottom)
+
 
 import pandas as pd
 import streamlit as st
@@ -20,7 +17,7 @@ def load():
 
 df = load()
 
-# ---------------- Sidebar filters (this is what makes it "interactive") ----------
+# ---------------- Sidebar filters ----------
 st.sidebar.header("Filters")
 states = st.sidebar.multiselect("Customer state", sorted(df.customer_state.dropna().unique()))
 cats   = st.sidebar.multiselect("Category", sorted(df.product_category_name_english.dropna().unique()))
@@ -93,10 +90,4 @@ st.caption("Limitation: Olist is marketplace e-commerce (days-long delivery), us
            "for fulfilment economics. The relationships — density→speed, reliability→satisfaction, "
            "category concentration — generalise to quick commerce.")
 
-# ---------------------------------------------------------------------------
-# Exporting master.csv from your notebook (keep it small for free hosting):
-#   cols = ["order_id", "order_purchase_timestamp", "customer_unique_id",
-#           "customer_state", "product_category_name_english",
-#           "revenue", "delivery_days", "late", "review_score"]
-#   master[cols].to_csv("master.csv", index=False)
-# ---------------------------------------------------------------------------
+
